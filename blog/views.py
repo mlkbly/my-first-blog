@@ -5,7 +5,10 @@ from .models import Post
 def post_list(request):
     return render(request, 'blog/post_list.html', {})
 def creat1000(request):
+
     me=User.objects.get(username='admin')
     for i in range(100):
-        Post.objects.create(author=me, title=f'Sample title{i}', text=f'Test{i}')
+        post=Post.objects.create(author=me, title=f'Sample title from {i}', text=f'Test From{i}')
+        post.publish()
+
     return HttpResponse("sss")
